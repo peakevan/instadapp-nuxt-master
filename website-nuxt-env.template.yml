@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: website-nuxt-secret
+type: Opaque
+stringData:
+  NODE_ENV: production

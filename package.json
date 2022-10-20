@@ -1,0 +1,34 @@
+{
+  "name": "atlas-landing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "prettier": "prettier --write '{api,assets,components,composables,content,layouts,middleware,pages,plugins,repository,store,test}/**/*' --ignore-unknown --ignore-path .prettierignore",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
+  },
+  "dependencies": {
+    "@nuxtjs/composition-api": "^0.13.4",
+    "core-js": "^3.6.5",
+    "dompurify": "^2.2.2",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.14.6",
+    "sass-loader": "^10.0.3",
+    "vue-click-outside": "^1.1.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^3.0.1",
+    "@nuxtjs/tailwindcss": "^3.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
+  }
+}

@@ -1,0 +1,89 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#__nuxt,
+#__layout {
+  @apply font-sans;
+  @apply text-font-primary;
+  font-size: 16px !important;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#__layout {
+  overflow-y: auto;
+}
+
+button {
+  @apply tracking-tight;
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+textarea,
+input {
+  &:focus {
+    @apply outline-none;
+    @apply border-primary-blue;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.block-divider--white,.block-divider--dark {
+  border-bottom-width: 75px;
+  border-bottom-style: solid;
+  border-left-width: 100vw ;
+  border-bottom-style: solid;
+  border-left-color: transparent;
+}
+
+
+.block-divider--white {
+  border-bottom-color: #FFFFFF;
+}
+.block-divider--dark {
+  border-bottom-color: #161E2E;
+}
+
+@media screen and (min-width: 768px) {
+  .block-divider--white,.block-divider--dark {
+     border-bottom-width: 100px;
+  }
+   
+}
+@media screen and (min-width: 976px) {
+  .block-divider--white,.block-divider--dark {
+     border-bottom-width: 150px;
+  }
+   
+}
+@media screen and (min-width: 1440px) {
+  .block-divider--white,.block-divider--dark{
+     border-bottom-width: 200px;
+  }
+  
+}

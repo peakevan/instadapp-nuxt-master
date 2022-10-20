@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-nuxt
+  namespace: default
+  labels:
+    app: website-nuxt
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: website-nuxt
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: website-nuxt
+  namespace: default
+  labels:
+    app: website-nuxt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website-nuxt
+  template:
+    metadata:
+      name: website-nuxt
+      labels:
+        app: website-nuxt
+    spec:
+      containers:
+        - name: website-nuxt
+          image: "instadapphq/website-nuxt:latest"
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 0.5
+              memory: 512
+          envFrom:
+            - secretRef:
+                name: website-nuxt-secret
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: regcred
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: website-nuxt
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: website-nuxt
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 80
